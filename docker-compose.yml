@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  web:
+    build: ./web
+    image: spellcheck:latest
+    ports:
+      - "8080:8080"
+      # host port: container port
+    environment:
+      FLASK_PASSWORD: /run/secrets/flask_admin_password
+      FLASK_2FA: /run/secrets/flask_2fa
+      FLASK_SECRET: /run/secrets/flask_secretKey
+    secrets:
+      - flask_admin_password
+      - flask_2fa
+      - flask_secretKey
+  
+secrets:
+  flask_admin_password:
+    external: true
+  flask_2fa:
+    external: true
+  flask_secretKey:
+    external: true
