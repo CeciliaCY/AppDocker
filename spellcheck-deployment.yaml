@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spellcheck-deployment
+  labels:
+    app: spellcheck
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spellcheck
+  template:
+    metadata:
+      labels:
+        app: spellcheck
+    spec:
+      containers:
+      - name: spellcheck
+        image: spellcheck:3.0.0
+        env:
+          - name: flask_secretKey
+            valueFrom:
+              secretKeyRef:
+                name: spellcheck-sec
+                key: flaskSessionkey.txt
+          - name: flask_admin_password
+            valueFrom:
+              secretKeyRef:
+                name: spellcheck-sec
+                key: adminpword.txt
+          - name: flask_2fa
+            valueFrom:
+              secretKeyRef:
+                name: spellcheck-sec
+                key: admin2fa.txt
+        ports:
+        - containerPort: 8090

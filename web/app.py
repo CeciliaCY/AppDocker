@@ -17,6 +17,11 @@ flask_admin_password = os.environ['flask_admin_password']
 flask_2fa = os.environ['flask_2fa']
 
 
+#flask_secretKey = "jkfjldajflkdjflkajlf"
+#flask_admin_password = "Administrator@1"
+#flask_2fa = "12345678901"
+
+
 cpath = os.getcwd()
 # print (cpath)
 # base_dir = os.path.dirname(os.path.abspath(__file__))
