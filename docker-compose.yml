@@ -3,6 +3,11 @@ services:
   web:
     build: ./web
     image: spellcheck:latest
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 50M
     ports:
       - "8080:8080"
       # host port: container port
